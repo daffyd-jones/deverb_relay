@@ -1,0 +1,23 @@
+# Cargo.toml
+[package]
+name = "delay_reverb_fx"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+nih_plug = { git = "https://github.com/robbert-vdh/nih-plug.git", features = ["assert_process_allocs"] }
+nih_plug_egui = { git = "https://github.com/robbert-vdh/nih-plug.git" }
+
+[profile.release]
+lto = "thin"
+opt-level = 3
+strip = true
+
+[profile.profiling]
+inherits = "release"
+debug = true
+strip = false
